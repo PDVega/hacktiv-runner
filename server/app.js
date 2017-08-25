@@ -19,6 +19,7 @@ const runner = require('./routes/runner')
 const user = require('./routes/user')
 let signup = require('./routes/signup');
 let signin = require('./routes/signin');
+let api = require('./routes/api')
 
 // app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -30,6 +31,7 @@ app.use('/signin', signin);
 app.use('/', index);
 app.use('/runners', runner)
 app.use('/users', user)
+app.use('/api', api)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

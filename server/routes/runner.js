@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const runnerController = require('../controllers/runner')
-
+// const runnerModel = require('../models/runner')
 router.get('/', runnerController.getAll)
 router.post('/', runnerController.insertData)
 router.delete('/:id', runnerController.deleteData)
