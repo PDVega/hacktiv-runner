@@ -19,40 +19,39 @@
       </div>
       
       <fieldset>
-      <legend>The Runner</legend>
+      <button class="btn btn-primary runner">The Runner</button>        
       <table class="table table-striped table-hover ">
   <thead>
     <tr>
-      <th>No</th>
       <th>Name</th>
       <th>Gender</th>
       <th>Runner Number</th>
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
-    </tr>
+  <tbody id="therunner">
   </tbody>
-</fieldset>
-</table> 
-      
-    </div>
+  </fieldset>
+  </table> 
+  </div>
+    
+    <script>
+      $('.runner').click(() => {
+        axios.get('http://localhost:3000/runners')
+        .then(res => {
+          let data = res.data
+          data.forEach(d => {
+            console.log(d);
+            $('#therunner').append(`
+              <tr>
+              <td>${d.name}</td>
+              <td>${d.jenis_kelamin}</td>
+              <td>${d.runner_number}</td>
+              </tr>
+            `)
+          })
+        })
+      })
+    </script>
   </body>
 </html>
       
