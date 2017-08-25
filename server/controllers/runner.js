@@ -4,11 +4,11 @@ const jwt = require('jsonwebtoken')
 require('dotenv').config()
 
 var getAll = (req, res) => {
-  if (req.headers.token == null) {
-    res.send('Anda belum login')
-  }
-  else {
-    var decoded = jwt.verify(req.headers.token, process.env.TOKEN_JWT);
+  // if (req.headers.token == null) {
+  //   res.send('Anda belum login')
+  // }
+  // else {
+    // var decoded = jwt.verify(req.headers.token, process.env.TOKEN_JWT);
     // if (decoded.role == 'admin') {
       runnerModel.find()
       .then(dataRunners => {
@@ -21,7 +21,7 @@ var getAll = (req, res) => {
     // else {
     //   res.send('Anda bukan admin')
     // }
-  }
+  // }
 }
 
 var insertData = (req, res) => {
