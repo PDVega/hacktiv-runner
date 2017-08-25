@@ -32,7 +32,25 @@
   </tbody>
   </fieldset>
   </table> 
+  
+  <form class="kirimGambar">
+    <label for="twatt">Sent Image to be Proccessed:</label>
+      <div class="form-group">
+        <input type="text" class="form-control" id="kirimGambar" placeholder="input image url here"><br>
+        <button type="submit" class="btn btn-info">Submit</button>
+      </div>
+  </form>
+  
+  <div class="col-md-6">
+    <div class="container hasilApi col-md-12">
+    </div>
   </div>
+  
+  
+  </div>
+  
+  
+  
     
     <script>
       $('.runner').click(() => {
@@ -51,6 +69,37 @@
           })
         })
       })
+      
+      
+      var $kirimGambar = $('#kirimGambar')
+
+      $('form.kirimGambar').submit(function(eventHandler){
+        eventHandler.preventDefault()
+        axios.post('http://localhost:3000/api', {
+          gambar: $kirimGambar.val()
+        })
+        .then(response => {
+          console.log(response);
+          $('.hasilApi').empty()
+          var data = response.data
+          console.log(data);
+          $('.hasilApi').append(
+            `
+            <div class="panel panel-primary">
+            <div class="panel-heading"> Runner Number: ${data[0].runner_number} </div>
+            <div class="panel-body">
+            <h2>${data[0].name}</h2>
+            <h2>${data[0].jenis_kelamin}</h2>
+            </div>
+
+            `
+          )
+        })
+        .catch(err => {
+          console.log(err);
+        })
+      })
+
     </script>
   </body>
 </html>
