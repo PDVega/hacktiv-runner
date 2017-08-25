@@ -11,7 +11,7 @@ function signup(req,res){
     email:req.body.email,
     userIdFb: '',
     salt: salt,
-    role: ''
+    role: 'admin'
   })
   .then((data) => {
     res.status(200).json({message: 'Success create'})
