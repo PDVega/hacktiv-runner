@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hacktiv Runner</title>
+    <link rel="stylesheet" href="https://bootswatch.com/united/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script src="assets/sdk/fb.js"></script>
+    <!-- <script src="assets/sdk/register.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="jumbotron top text-center vibrate-2">
+        <h1>Hacktiv Runner</h1>
+        <hr class="my-4">
+        <button id="login-btn" class="btn btn-primary" type="button" onclick="FBLogin()">Login Using Facebook</button>
+      </div>
+    
+      <form class="form-horizontal" id="signupform">
+  <fieldset>
+    <legend>Register</legend>
+    
+    <div class="form-group">
+      <label for="inputName" class="col-lg-2 control-label">Name</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="name" placeholder="Name">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="email" placeholder="Email">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="inputUsername" class="col-lg-2 control-label">Username</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="username" placeholder="Username">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+      <div class="col-lg-10">
+        <input type="password" class="form-control" id="password" placeholder="Password">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-4">
+        <button type="reset" class="btn btn-default">Cancel</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </fieldset>
+</form>
+</div>
+      
+      <!-- <div id="timeline-wrapper">
+        <div class="form-group">
+          <label for="textArea" class="control-label">Post New Status</label>
+          <textarea id="status" class="form-control" rows="3" id="textArea"></textarea>
+          <br/>
+          <button class="btn btn-primary" type="button" onclick="postStatus()">
+            <i class="fa fa-send"></i> Post
+          </button>
+        </div>
+        <hr/>
+    </div> -->
+    <script>
+    $('#signupform').submit(event => {
+      event.preventDefault();
+      let name = $('#name').val();
+      let email = $('#email').val();
+      let username = $('#username').val();
+      let password = $('#password').val();
+      axios.post('http://localhost:3000/signup', {
+        name: name,
+        email: email,
+        username: username,
+        password: password
+      })
+      .then(res => {
+        console.log(res);
+        window.location.href = 'index.html'
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    })
+    </script>
+  </body>
+</html>
